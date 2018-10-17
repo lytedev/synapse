@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from ._base import Config, ConfigError
-
 from synapse.util import glob_to_regex
+
+from ._base import Config, ConfigError
 
 
 class RoomDirectoryConfig(Config):
@@ -78,7 +78,7 @@ class _AliasRule(object):
         try:
             self._user_id_regex = glob_to_regex(user_id)
             self._alias_regex = glob_to_regex(alias)
-        except Exception:
+        except Exception as e:
             raise ConfigError("Failed to parse glob into regex: %s", e)
 
     def matches(self, user_id, alias):
