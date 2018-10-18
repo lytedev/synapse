@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import yaml
+
 from synapse.config.room_directory import RoomDirectoryConfig
 
 from tests import unittest
-
-import yaml
 
 
 class RoomDirectoryConfigTestCase(unittest.TestCase):
