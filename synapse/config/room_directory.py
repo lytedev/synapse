@@ -20,7 +20,7 @@ from ._base import Config, ConfigError
 
 class RoomDirectoryConfig(Config):
     def read_config(self, config):
-        alias_creation_rules = config.get("alias_creation_rules", [])
+        alias_creation_rules = config["alias_creation_rules"]
 
         self._alias_creation_rules = [
             _AliasRule(rule)
