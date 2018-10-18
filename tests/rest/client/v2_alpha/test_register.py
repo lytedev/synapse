@@ -186,6 +186,7 @@ class RegisterRestServletTestCase(unittest.TestCase):
 
         self.assertEquals(channel.result["code"], b"401", channel.result)
 
+        print(channel)
         self.assertTrue(channel.json_body is not None)
         self.assertIsInstance(channel.json_body["session"], str)
 
