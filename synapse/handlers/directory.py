@@ -86,7 +86,7 @@ class DirectoryHandler(BaseHandler):
         # TODO(erikj): Do user auth.
 
         if not self.spam_checker.user_may_create_room_alias(user_id, room_alias):
-            raise SynapseError(
+            raise AuthError(
                 403, "This user is not permitted to create this alias",
             )
 
@@ -94,7 +94,7 @@ class DirectoryHandler(BaseHandler):
             # Lets just return a generic message, as there may be all sorts of
             # reasons why we said no. TODO: Allow configurable error messages
             # per alias creation rule?
-            raise SynapseError(
+            raise AuthError(
                 403, "Not allowed to create alias",
             )
 
@@ -103,7 +103,7 @@ class DirectoryHandler(BaseHandler):
             user_id=user_id
         )
         if not can_create:
-            raise SynapseError(
+            raise AuthError(
                 400, "This alias is reserved by an application service.",
                 errcode=Codes.EXCLUSIVE
             )
