@@ -186,6 +186,7 @@ class RegisterRestServletTestCase(unittest.TestCase):
 
         self.assertEquals(channel.result["code"], b"401", channel.result)
 
+        self.assertTrue(channel.json_body is not None)
         self.assertIsInstance(channel.json_body["session"], str)
 
         self.assertIsInstance(channel.json_body["flows"], list)
@@ -231,7 +232,6 @@ class RegisterRestServletTestCase(unittest.TestCase):
         self.registration_handler.register = Mock(return_value=(user_id, None))
         self.auth_handler.get_access_token_for_user_id = Mock(return_value=token)
         self.device_handler.check_device_registered = Mock(return_value=device_id)
-
 
         request, channel = make_request(b"POST", self.url, request_data)
         render(request, self.resource, self.clock)
